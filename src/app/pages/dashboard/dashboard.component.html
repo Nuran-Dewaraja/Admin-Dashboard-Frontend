@@ -1,0 +1,139 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+    <h1 class="text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
+    <div class="flex items-center">
+      <select class="px-4 py-2 border border-gray-300 rounded-lg bg-white text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        <option>Last 30 days</option>
+        <option>Last 90 days</option>
+        <option>Last 6 months</option>
+        <option>Last year</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <div class="w-14 h-14 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="ml-4 flex-1">
+          <h3 class="text-2xl font-bold text-gray-900">{{ totalUsers | number }}</h3>
+          <p class="text-sm text-gray-600 mb-2">Total Users</p>
+          <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-green-100 text-green-800">
+            +12.5%
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <div class="w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="ml-4 flex-1">
+          <h3 class="text-2xl font-bold text-gray-900">Rs.{{ totalRevenue | number }}</h3>
+          <p class="text-sm text-gray-600 mb-2">Total Revenue</p>
+          <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-green-100 text-green-800">
+            +8.2%
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <div class="w-14 h-14 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="ml-4 flex-1">
+          <h3 class="text-2xl font-bold text-gray-900">{{ conversionRate }}%</h3>
+          <p class="text-sm text-gray-600 mb-2">Conversion Rate</p>
+          <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-red-100 text-red-800">
+            -2.1%
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
+      <div class="flex items-center">
+        <div class="flex-shrink-0">
+          <div class="w-14 h-14 bg-gradient-to-r from-amber-500 to-amber-600 rounded-xl flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 13v4a2 2 0 01-2 2H9a2 2 0 01-2-2v-4m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="ml-4 flex-1">
+          <h3 class="text-2xl font-bold text-gray-900">Rs.{{ averageOrderValue }}</h3>
+          <p class="text-sm text-gray-600 mb-2">Avg Order Value</p>
+          <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-green-100 text-green-800">
+            +5.7%
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Sales Trend Chart -->
+    <div class="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-semibold text-gray-900">Sales Trend</h3>
+        <button class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors duration-200">
+          Export
+        </button>
+      </div>
+      <div class="relative h-80">
+        <canvas #salesChart></canvas>
+      </div>
+    </div>
+
+    <!-- Traffic Sources -->
+    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-semibold text-gray-900">Traffic Sources</h3>
+      </div>
+      <div class="relative h-80">
+        <canvas #trafficChart></canvas>
+      </div>
+    </div>
+
+    <!-- Revenue vs Profit -->
+    <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-semibold text-gray-900">Revenue vs Profit</h3>
+      </div>
+      <div class="relative h-80">
+        <canvas #revenueChart></canvas>
+      </div>
+    </div>
+
+    <!-- Conversion Rate -->
+    <div class="lg:col-span-2 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-semibold text-gray-900">Conversion Rate Trend</h3>
+      </div>
+      <div class="relative h-80">
+        <canvas #conversionChart></canvas>
+      </div>
+    </div>
+  </div>
+</div>
