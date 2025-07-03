@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; 
-import { provideHttpClient } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { LoginService } from '../../services/login.service';
 
@@ -19,10 +18,6 @@ export class LoginComponent implements OnInit {
   showPassword = false;
   isLoading = false;
   errorMessage = '';
-
-  // Hardcoded credentials
-  private readonly VALID_USERNAME = 'admin';
-  private readonly VALID_PASSWORD = 'admin123';
 
   constructor(
     private fb: FormBuilder,
@@ -51,50 +46,40 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.errorMessage = '';
 
-    // Simulate loading delay
-    setTimeout(() => {
-      const { userName, password } = this.loginForm.value;
+    const { userName, password } = this.loginForm.value;
 
-      // Check hardcoded credentials
-      if (userName === this.VALID_USERNAME && password === this.VALID_PASSWORD) {
+    this.loginService.login({ userName, password }).subscribe({
+      next: (response) => {
         this.isLoading = false;
+
         
-        // Create mock user data
-        const userData = {
-          userName: userName,
-          email: 'admin@restaurant.com',
-          role: 'admin',
-          token: 'mock-jwt-token-' + Date.now()
-        };
+        localStorage.setItem('token', response.token);
 
-        // Save user data (if using LoginService)
-        // this.loginService.saveUserData(userData);
-
-        // Show success message
+        
         Swal.fire({
           icon: 'success',
           title: 'Login Successful',
-          text: `Welcome ${userData.userName}!`,
+          text: `Welcome ${response.name}!`,
           timer: 2000,
           showConfirmButton: false
         });
 
-        // Navigate to dashboard
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.isLoading = false;
-        this.errorMessage = 'Invalid username or password. Please try again.';
         
-        // Show error message with SweetAlert
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = 'Invalid username or password.';
+
         Swal.fire({
           icon: 'error',
           title: 'Login Failed',
-          text: 'Invalid username or password',
+          text: this.errorMessage,
           timer: 3000,
           showConfirmButton: false
         });
       }
-    }, 1000); // 1 second delay to simulate API call
+    });
   }
 
   private markFormGroupTouched(): void {
