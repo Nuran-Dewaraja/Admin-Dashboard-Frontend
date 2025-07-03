@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { LoginService } from '../../services/login.service';
 
@@ -48,14 +47,14 @@ export class LoginComponent implements OnInit {
 
     const { userName, password } = this.loginForm.value;
 
-    this.loginService.login({ userName, password }).subscribe({
+    
+    this.loginService.login({ name: userName, password }).subscribe({
       next: (response) => {
         this.isLoading = false;
 
         
         localStorage.setItem('token', response.token);
 
-        
         Swal.fire({
           icon: 'success',
           title: 'Login Successful',
@@ -64,7 +63,6 @@ export class LoginComponent implements OnInit {
           showConfirmButton: false
         });
 
-        
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {
